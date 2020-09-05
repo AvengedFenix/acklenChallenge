@@ -1,8 +1,5 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
 import dbConnect from './../../utils/database';
-
-import User from "../models/User";
+import Task from './../../models/Task';
 
 dbConnect();
 
@@ -12,16 +9,18 @@ export default async (req,res) => {
   switch(method) {
     case 'GET':
       try {
-        
+        const tasks = await Task.find({})
+
+        res.status(200).json({success: true, data: tasks})
       } catch (error) {
         res.status(400).json( {success: false} );
       }
       break;
     case 'POST':
       try {
-        const user = await User.create(req.body);
+        const task = await Task.create(req.body);
 
-        res.status(201).json({success: true, data: user})
+        res.status(201).json({success: true, data: task})
       } catch (error) {
         
       }

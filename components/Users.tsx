@@ -2,26 +2,7 @@ import React from "react";
 import mongoose from "mongoose";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import userModel from "../models/userModel";
 
-const dbURI =
-	"mongodb+srv://mario:acklenDB@cluster0.wci2l.mongodb.net/acklenChallenge?retryWrites=true&w=majority";
-
-mongoose
-	.connect(dbURI, {
-		useNewUrlParser: true,
-		bufferCommands: false,
-		useUnifiedTopology: true,
-	})
-	.catch((err) => {
-		console.log(err);
-		console.log("se mamo perro");
-	});
-
-let newUser = new userModel({
-	id: mongoose.ObjectId,
-	name: "Mario",
-});
 
 class Users extends React.Component {
 	save = () => {
