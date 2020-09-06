@@ -29,9 +29,12 @@ a {
 
 .card {
 	flex: 1 0 21%;
-	margin-left: 5%;
 	margin-top: 2%;
 	box-shadow: 4px 4px 12px -2px rgba(0, 0, 0, 0.25);
 	border-radius: 5px !important;
 	border: none !important;
+}
+
+.tasks-container > #false {
+  margin-left: 5%;
 }

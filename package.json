@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^1.0.0",
     "bootstrap": "^4.5.2",
     "isomorphic-unfetch": "^3.0.0",
     "mongoose": "^5.10.3",

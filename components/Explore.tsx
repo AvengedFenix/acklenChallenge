@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Task from "./../components/Task";
+import Register from "./Register";
+import { Auth0Provider } from "@auth0/auth0-react";
 
 class Explore extends React.Component<any> {
 	constructor(props: any) {
@@ -30,14 +32,20 @@ class Explore extends React.Component<any> {
 
 	render() {
 		let cards: JSX.Element = this.state.tasks.map((task, index) => {
-			return <Task title={task.type} key={index} />;
+			console.log("index: " + index);
+
+			if (index % 4 == 0) {
+				return <Task first={true} title={task.type} key={index} />;
+			} else {
+				return <Task first={false} title={task.type} key={index} />;
+			}
 		});
 
 		return (
 			<div className="tasks-container">
-				
-					{cards}
-				
+				{cards}
+				<Auth0Provider></Auth0Provider>
+				<Register></Register>
 			</div>
 		);
 	}
