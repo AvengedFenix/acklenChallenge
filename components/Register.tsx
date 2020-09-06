@@ -1,5 +1,5 @@
 import React from "react";
-import LoginButton from "./Login";
+import LoginButton from "./LoginButton";
 
 const Register = () => {
 	return (

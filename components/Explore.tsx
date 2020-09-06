@@ -44,8 +44,6 @@ class Explore extends React.Component<any> {
 		return (
 			<div className="tasks-container">
 				{cards}
-				<Auth0Provider></Auth0Provider>
-				<Register></Register>
 			</div>
 		);
 	}
