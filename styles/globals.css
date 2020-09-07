@@ -36,5 +36,8 @@ a {
 }
 
 .tasks-container > #false {
-  margin-left: 5%;
+	margin-left: 5%;
+}
+.btn-primary {
+	background-color: #ef5350 !important;
 }

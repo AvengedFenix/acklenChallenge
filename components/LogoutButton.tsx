@@ -7,7 +7,7 @@ const LogoutButton = () => {
 	return (
 		<button
 			type="button"
-			className="btn btn-danger"
+			className="btn btn-secondary"
 			onClick={() => logout({ returnTo: "http://localhost:3000/" })}
 		>
 			Log Out
