@@ -3,7 +3,8 @@ import Head from "next/head";
 import AppNavbar from "./AppNavbar";
 import Explore from "./Explore";
 import { Auth0Provider } from "@auth0/auth0-react";
-import LoginButton from './LoginButton';
+import LoginButton from "./LoginButton";
+import LogoutButton from './LogoutButton';
 
 const Layout = () => {
 	return (
@@ -11,14 +12,15 @@ const Layout = () => {
 			<Auth0Provider
 				domain="maslz98.us.auth0.com"
 				clientId="4T1TbPEte0vUOAy0iVOKAV1hxmFmQMsr"
-				redirectUri={'http://localhost:3000/'}
+				redirectUri={"http://localhost:3000/"}
 			>
 				<Head>
 					<title>PolyTasks</title>
 				</Head>
 				<AppNavbar />
 				<Explore />
-				<LoginButton/>
+				<LoginButton />
+				<LogoutButton />
 			</Auth0Provider>
 		</div>
 	);
