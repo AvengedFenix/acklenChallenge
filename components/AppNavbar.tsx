@@ -4,6 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import LogoutButton from "./LogoutButton";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import LoginButton from "./LoginButton";
 
 interface Props {
 	auth: boolean;
@@ -55,20 +56,23 @@ const LoggedOutNavbar = () => {
 	};
 
 	return (
-		<Navbar bg="light" sticky="top">
-			<Navbar.Brand href="#home">Navbar</Navbar.Brand>
-			<Navbar.Toggle aria-controls="basic-navbar-nav" />
-			<Navbar.Collapse id="basic-navbar-nav">
-				<Nav className="mr-auto">
-					<Link href="/">
-						<Nav.Link onClick={() => router.push("/")}>Home</Nav.Link>
-					</Link>
-					<Link href="/about">
-						<Nav.Link onClick={() => router.push("/about")}>Oracle</Nav.Link>
-					</Link>
-				</Nav>
-			</Navbar.Collapse>
-		</Navbar>
+		<div className="nav-container">
+			<Navbar id="nav" bg="light" sticky="top">
+				<Navbar.Brand href="#home">Navbar</Navbar.Brand>
+				<Navbar.Toggle aria-controls="basic-navbar-nav" />
+				<Navbar.Collapse id="basic-navbar-nav">
+					<Nav className="mr-auto">
+						<Link href="/">
+							<Nav.Link onClick={() => router.push("/")}>Home</Nav.Link>
+						</Link>
+						<Link href="/about">
+							<Nav.Link onClick={() => router.push("/about")}>Oracle</Nav.Link>
+						</Link>
+						<LoginButton />
+					</Nav>
+				</Navbar.Collapse>
+			</Navbar>
+		</div>
 	);
 };
 
