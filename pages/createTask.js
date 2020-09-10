@@ -1,8 +1,5 @@
 import React from "react";
-import { fetch } from "isomorphic-unfetch";
-import { useRouter } from "next/router";
-
-const router = useRouter();
+//import { fetch } from "isomorphic-unfetch";
 
 class CreateTask extends React.Component {
 	constructor(props) {
@@ -10,11 +7,11 @@ class CreateTask extends React.Component {
 		this.state = {
 			form: {
 				size: 0,
-				takenDown: null,
+				takenDown: false,
 				wallMount: "",
 				wallType: "",
-				cords: "",
-				externalDevices: "",
+				cords: false,
+				externalDevices: false,
 			},
 			price: 80,
 			showReceipt: false,
@@ -24,9 +21,6 @@ class CreateTask extends React.Component {
 			uZip: 0,
 			numberTV: 0,
 			date: null,
-			takenDownBoolean: false,
-			cordsBoolean: false,
-			externalDevicesBoolean: false,
 		};
 		this.handleSizeChange = this.handleSizeChange.bind(this);
 		this.handleTakenDown = this.handleTakenDown.bind(this);
@@ -41,48 +35,72 @@ class CreateTask extends React.Component {
 		let size = e.target.value;
 		console.log(size);
 
-		await this.setState({ size: size });
+		await this.setState((prevState) => ({
+			form: {
+				...prevState.form,
+				size: size,
+			},
+		}));
 	}
 
 	async handleTakenDown(e) {
 		let checked = e.target.checked;
 
 		console.log(checked);
-		await this.setState({
-			takenDown: checked,
-			takenDownBoolean: checked,
-		});
+		await this.setState((prevState) => ({
+			form: {
+				...prevState.form,
+				takenDown: checked,
+			},
+		}));
 	}
 
 	async handleWallMount(e) {
 		let mount = e.target.value;
 
-		await await this.setState({ wallMount: mount });
-		console.log(this.state.wallMount);
+		await await this.setState((prevState) => ({
+			form: {
+				...prevState.form,
+				wallMount: mount,
+			},
+		}));
+		console.log(this.state.form.wallMount);
 	}
 
 	async handleWallType(e) {
 		let type = e.target.value;
 		console.log(type);
 
-		await this.setState({ wallType: type });
+		await this.setState((prevState) => ({
+			form: {
+				...prevState.form,
+				wallType: type,
+			},
+		}));
 	}
 
 	async handleCords(e) {
 		let cords = e.target.checked;
 
 		console.log(cords);
-		await this.setState({ cords: cords, cordsBoolean: cords });
+		await this.setState((prevState) => ({
+			form: {
+				...prevState.form,
+				cords: cords,
+			},
+		}));
 	}
 
 	async handleExternalDevices(e) {
 		let devices = e.target.checked;
 
 		console.log(devices);
-		await this.setState({
-			externalDevices: devices,
-			externalDevicesBoolean: devices,
-		});
+		await this.setState((prevState) => ({
+			form: {
+				...prevState.form,
+				externalDevices: devices,
+			},
+		}));
 	}
 
 	async createTask() {
@@ -92,12 +110,12 @@ class CreateTask extends React.Component {
 			const res = await fetch("http://localhost:3000/api/Tasks", {
 				method: "POST",
 				headers: {
-					Accept: "application/json",
+					"Accept": "application/json",
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify(this.state.form),
+				body: JSON.stringify(this.state.form)
 			});
-			router.push("/");
+			//router.push("/");
 		} catch (e) {
 			console.log(e);
 		}
@@ -150,7 +168,7 @@ class CreateTask extends React.Component {
 				<div>
 					<input
 						onChange={this.handleTakenDown}
-						defaultChecked={this.state.takenDownBoolean}
+						defaultChecked={this.state.form.takenDown}
 						type="checkbox"
 						className="form-check-input"
 						id="check1"
@@ -261,7 +279,7 @@ class CreateTask extends React.Component {
 				<div>
 					<input
 						onChange={this.handleCords}
-						defaultChecked={this.state.cordsBoolean}
+						defaultChecked={this.state.form.cords}
 						type="checkbox"
 						className="form-check-input"
 						id="check1"
@@ -278,7 +296,7 @@ class CreateTask extends React.Component {
 				<div>
 					<input
 						onChange={this.handleExternalDevices}
-						defaultChecked={this.state.externalDevicesBoolean}
+						defaultChecked={this.state.form.externalDevices}
 						type="checkbox"
 						className="form-check-input"
 						id="check1"
@@ -304,14 +322,14 @@ class CreateTask extends React.Component {
 					<div className="form-group">{<WallType />}</div>
 					<div className="form-group form-check">{<Cords />}</div>
 					<div className="form-group form-check">{<ExternalDevices />}</div>
-					<button
-						onClick={this.createTask}
-						type="submit"
-						className="btn btn-primary"
-					>
-						Submit
-					</button>
 				</form>
+				<button
+					onClick={this.createTask}
+					//type="submit"
+					className="btn btn-primary"
+				>
+					Submit
+				</button>
 			</div>
 		);
 	}
