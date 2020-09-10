@@ -51,10 +51,6 @@ const LoggedInNavbar = () => {
 const LoggedOutNavbar = () => {
 	const router = useRouter();
 
-	const redirect = async () => {
-		router.push("/about");
-	};
-
 	return (
 		<div className="nav-container">
 			<Navbar id="nav" bg="light" sticky="top">
@@ -67,6 +63,9 @@ const LoggedOutNavbar = () => {
 						</Link>
 						<Link href="/about">
 							<Nav.Link onClick={() => router.push("/about")}>Oracle</Nav.Link>
+						</Link>
+						<Link href="/CreateTask">
+							<Nav.Link onClick={()=> router.push("/createTask")}>Create Task</Nav.Link>
 						</Link>
 						<LoginButton />
 					</Nav>

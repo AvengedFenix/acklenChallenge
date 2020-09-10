@@ -19,7 +19,7 @@ const pictures = {
 const Task: React.FC<Props> = ({ title, first }: Props) => {
 	console.log(title);
 
-	const randomPhoto = Math.floor(Math.random() *4);
+	const randomPhoto = Math.floor(Math.random() * 4);
 	console.log(randomPhoto);
 	
 	return (

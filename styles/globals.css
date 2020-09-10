@@ -18,11 +18,16 @@ a {
 	box-sizing: border-box;
 }
 
-.tasks-container {
-	position: relative;
-	top: 7vh;
+.container {
 	margin: 0 auto;
 	width: 1080px;
+}
+
+.tasks-container {
+	margin: 0 auto;
+	width: 1080px;
+	position: relative;
+	top: 7vh;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -193,4 +198,12 @@ a {
 @media only screen and (min-width: 720px) {
 	.btn-login {
 	}
+}
+
+.form-group{
+	--display: inline-block;
+}
+
+.btn-toggle {
+	display: inline-block;
 }

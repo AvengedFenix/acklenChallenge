@@ -9,8 +9,6 @@ const index = () => {
 	return (
 		<div>
 			<Explore/>
-			<LoginButton/>
-			<LogoutButton/>
 		</div>
 	);
 };

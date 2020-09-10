@@ -24,5 +24,7 @@ export default async (req,res) => {
       } catch (error) {
         
       }
+      default:
+        res.status(400).json({success: false})
     }
 }
