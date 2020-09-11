@@ -6,8 +6,4 @@ const userSchema = mongoose.Schema({
 	},
 });
 
-for (let model in mongoose.models) {
-	delete mongoose.models[model];
-}
-
 module.exports = mongoose.models.User || mongoose.model("User", userSchema);

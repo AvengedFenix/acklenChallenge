@@ -1,4 +1,4 @@
-const mongoose = require("../utils/node_modules/mongoose");
+import  mongoose  from 'mongoose';
 
 const taskSchema = mongoose.Schema({
 	size: {

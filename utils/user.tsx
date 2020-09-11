@@ -1,3 +1,5 @@
+//DISCLAIMER: This was obtained from the nextjs-auth0 starter documentation at https://github.com/auth0/nextjs-auth0
+
 import React from 'react';
 import fetch from 'isomorphic-unfetch';
 
