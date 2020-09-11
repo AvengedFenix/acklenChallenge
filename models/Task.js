@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require("../utils/node_modules/mongoose");
 
 const taskSchema = mongoose.Schema({
 	size: {

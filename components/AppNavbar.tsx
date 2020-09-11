@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import LoginButton from "./LoginButton";
 
 interface Props {
-	auth: boolean;
+	auth?: boolean;
 }
 
 const LoggedInNavbar = () => {
@@ -65,9 +65,14 @@ const LoggedOutNavbar = () => {
 							<Nav.Link onClick={() => router.push("/about")}>Oracle</Nav.Link>
 						</Link>
 						<Link href="/CreateTask">
-							<Nav.Link onClick={()=> router.push("/createTask")}>Create Task</Nav.Link>
+							<Nav.Link onClick={() => router.push("/createTask")}>
+								Create Task
+							</Nav.Link>
 						</Link>
-						<LoginButton />
+						{/* <Link> */}
+							{/* <LoginButton /> */}
+							<a href="/api/login">Login</a>
+						{/* </Link> */}
 					</Nav>
 				</Navbar.Collapse>
 			</Navbar>
@@ -76,7 +81,7 @@ const LoggedOutNavbar = () => {
 };
 
 const AppNavbar: React.FC<Props> = ({ auth }) => {
-	const isAuthenticated = auth;
+	const isAuthenticated = (auth = false);
 	console.log("isAuth " + isAuthenticated);
 
 	return (

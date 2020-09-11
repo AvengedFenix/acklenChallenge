@@ -1,14 +1,14 @@
 import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+//import { useAuth0 } from "@auth0/auth0-react";
 
 const LoginButton = () => {
-	const { loginWithRedirect } = useAuth0();
+	//const { loginWithRedirect } = useAuth0();
 
 	return (
 		<button
 			type="button"
 			className="btn btn-primary btn-login"
-			onClick={() => loginWithRedirect()}
+			//onClick={() => loginWithRedirect()}
 		>
 			Log In
 		</button>

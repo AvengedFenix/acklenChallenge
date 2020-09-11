@@ -3,7 +3,6 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Task from "./../components/Task";
 import Register from "./Register";
-import { Auth0Provider } from "@auth0/auth0-react";
 
 class Explore extends React.Component<any> {
 	constructor(props: any) {
@@ -14,7 +13,7 @@ class Explore extends React.Component<any> {
 	}
 
 	async componentDidMount() {
-		const res = await fetch("http://localhost:3000/api/Tasks");
+		const res = await fetch("http://localhost:3000/api/tasks");
 		const { data } = await res.json();
 
 		console.log("Data: " + JSON.stringify(data));

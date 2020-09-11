@@ -1,11 +1,13 @@
 import React from "react";
-//import { fetch } from "isomorphic-unfetch";
+import { withRouter } from "next/router";
 
 class CreateTask extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			form: {
+				type: "TV Mount",
+				direction: "Tegucigalpa, Honduras",
 				size: 0,
 				takenDown: false,
 				wallMount: "",
@@ -115,7 +117,7 @@ class CreateTask extends React.Component {
 				},
 				body: JSON.stringify(this.state.form)
 			});
-			//router.push("/");
+			router.push("/");
 		} catch (e) {
 			console.log(e);
 		}
@@ -335,4 +337,4 @@ class CreateTask extends React.Component {
 	}
 }
 
-export default CreateTask;
+export default withRouter(CreateTask);

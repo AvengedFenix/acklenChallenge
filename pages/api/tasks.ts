@@ -1,5 +1,5 @@
-import dbConnect from "./../../utils/database";
-import Task from "./../../models/Task";
+import dbConnect from "../../utils/database";
+import Task from "../../models/Task";
 
 dbConnect();
 
