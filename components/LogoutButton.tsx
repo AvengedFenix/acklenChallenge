@@ -9,7 +9,7 @@ const LogoutButton = () => {
 		<Link href="/api/logout">
 			<button
 				type="button"
-				className="btn btn-secondary"
+				className="btn btn-secondary btn-login"
 				// onClick={() => logout({ returnTo: "http://localhost:3000/" })}
 			>
 				Log Out

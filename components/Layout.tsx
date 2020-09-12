@@ -26,10 +26,6 @@ const Layout = ({ children }) => {
 				</Head>
 				<AppNavbar />
 				{children}
-				{/* <Link href="/api/logout"> */}
-				<a href="/api/logout">Log Out</a>
-				<a href="/api/login">Log in</a>
-				{/* </Link> */}
 		</div>
 	);
 };

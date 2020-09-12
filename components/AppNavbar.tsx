@@ -11,7 +11,6 @@ interface Props {
 	auth?: boolean;
 }
 
-// const LoggedInNavbar = () => {
 // 	return (
 // 		<nav className="navbar navbar-expand-lg navbar-light bg-light">
 // 			<a className="navbar-brand" href="#">
@@ -93,27 +92,30 @@ interface Props {
 const AppNavbar = () => {
 	const { user, loading } = useFetchUser();
 	return (
-		<div className="nav-container">
-			<Navbar id="nav" bg="light" sticky="top">
-				<Navbar.Brand href="#home">Navbar</Navbar.Brand>
-				<Navbar.Toggle aria-controls="basic-navbar-nav" />
-				<Navbar.Collapse id="basic-navbar-nav">
-					<Nav className="mr-auto">
-						<Link href="/">
-							<Nav.Link>Home</Nav.Link>
-						</Link>
-						<Link href="/about">
-							<Nav.Link>Oracle</Nav.Link>
-						</Link>
-						<Link href="/CreateTask">
-							<Nav.Link>Create Task</Nav.Link>
-						</Link>
-						{user && !loading ? <LogoutButton /> : null}
-						{!user && !loading ? <LoginButton/> : null}
-					</Nav>
-				</Navbar.Collapse>
-			</Navbar>
-		</div>
+		<nav id="nav" className="navbar navbar-expand-lg navbar-light bg-light">
+			<a className="navbar-brand" href="#">
+				Navbar
+			</a>
+			<ul className="navbar-nav mr-auto">
+				<li className="nav-item active">
+					<Link href="/">
+						<a className="nav-link">Home</a>
+					</Link>
+				</li>
+				<li className="nav-item">
+					<Link href="/about">
+						<a className="nav-link" href="#">
+							Link
+						</a>
+					</Link>
+				</li>
+				<Link href="/createTask">
+					<a className="nav-link">Create Task</a>
+				</Link>
+				{user && !loading ? <LogoutButton /> : null}
+				{!user && !loading ? <LoginButton /> : null}
+			</ul>
+		</nav>
 	);
 };
 export default AppNavbar;
