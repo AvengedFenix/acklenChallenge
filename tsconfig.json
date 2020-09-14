@@ -21,7 +21,7 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx", "pages/_app.js", "pages/about.js", "pages/createTask.js", "pages/api/profile.ts", "pages/api/logout.ts", "pages/api/callback.ts", "pages/api/login.ts", "utils", "pages/api/tasks.ts"
+    "**/*.tsx", "pages/_app.js", "pages/about.js", "pages/createTask.js", "pages/api/profile.ts", "pages/api/logout.ts", "pages/api/callback.ts", "pages/api/login.ts", "utils", "pages/api/tasks.ts", "models/Worker.js"
   ],
   "exclude": [
     "node_modules"

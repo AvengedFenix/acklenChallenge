@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import LoginButton from "./LoginButton";
 import { useFetchUser } from "../utils/user";
+import BecomeWorker from "./BecomeWorker";
 
 interface Props {
 	auth?: boolean;
@@ -91,6 +92,9 @@ interface Props {
 
 const AppNavbar = () => {
 	const { user, loading } = useFetchUser();
+	console.log("User navbar: " + JSON.stringify(user));
+	// console.log(user.email);
+
 	return (
 		<nav id="nav" className="navbar navbar-expand-lg navbar-light bg-light">
 			<a className="navbar-brand" href="#">
@@ -112,7 +116,16 @@ const AppNavbar = () => {
 				<Link href="/createTask">
 					<a className="nav-link">Create Task</a>
 				</Link>
-				{user && !loading ? <LogoutButton /> : null}
+				{user && !loading ? (
+					<div>
+						<LogoutButton />
+						<BecomeWorker
+							name={user.name}
+							nickname={user.nickname}
+							auth0Id={user.sub}
+						/>
+					</div>
+				) : null}
 				{!user && !loading ? <LoginButton /> : null}
 			</ul>
 		</nav>

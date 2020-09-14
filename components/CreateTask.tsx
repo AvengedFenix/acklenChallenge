@@ -137,7 +137,7 @@ class CreateTask extends React.Component<{ type }, States> {
 			const res = await fetch("http://localhost:3000/api/Tasks", {
 				method: "POST",
 				headers: {
-					Accept: "application/json",
+					"Accept": "application/json",
 					"Content-Type": "application/json",
 				},
 				body: JSON.stringify(this.state.form),
