@@ -27,7 +27,7 @@ const hideTask = async (info) => {
 		const res = await fetch(url + "hideTask", {
 			method: "POST",
 			headers: {
-				"Accept": "application/json",
+				Accept: "application/json",
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(info),
@@ -45,7 +45,7 @@ const verifyWorker = async (info) => {
 		const res = await fetch(url + "checkWorker", {
 			method: "POST",
 			headers: {
-				"Accept": "application/json",
+				Accept: "application/json",
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(info),
@@ -66,11 +66,15 @@ const Task: React.FC<Props> = ({ title, first, id }: Props) => {
 	const randomPhoto = Math.floor(Math.random() * 4);
 	console.log(randomPhoto);
 
-	const info = {
-		taskID: id,
-		workerID: user.sub,
-		title: title,
-	};
+	let info = {};
+
+	if (user && !loading) {
+		info = {
+			taskID: id,
+			workerID: user.sub,
+			title: title,
+		};
+	}
 
 	return (
 		<div id={String(first)} className="card" style={{ width: "10rem" }}>

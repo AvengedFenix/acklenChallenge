@@ -14,11 +14,6 @@ export default async (req, res) => {
 				const workerID = req.body.workerID;
 				console.log("in hideTasks: " + req.body.taskID);
 
-				// const task = await Task.findOne({
-				// 	_id: 'ObjectId("' + req.body.taskID + '")',
-				// });
-				// console.log(task);
-				// console.log(task.taken);
 				Task.updateOne(
 					{ _id: ObjectID(req.body.taskID) },
 					{ $set: { taken: true } },
@@ -30,25 +25,23 @@ export default async (req, res) => {
 						}
 					}
 				);
-				// task.taken = true;
-				// task.save();
-				// const task = Task.findOneAndUpdate(
-				// 	{ _id: req.body.taskID },
-				// 	{ taken: true },
-				// 	{ upsert: true },
-				// 	(err, doc) => {
-				//     if (err) {
-				//       return res.send(500, {error: err})
-				//     }
-				//     return res.send('Saved')
-				//   }
-				// );
 
 				const taskInfo = {
 					taskID: req.body.taskID,
 					taskType: req.body.title,
 				};
 
+				Worker.updateOne(
+					{ auth0Id: req.body.workerID },
+					{ $push: { tasks: taskInfo } },
+					(err, docs) => {
+						if (err) {
+							console.log(err);
+						} else {
+							console.log("Updated Docs : ", docs);
+						}
+					}
+				);
 				// Worker.findOneAndUpdate(
 				// 	{ auth0Id: req.body.workerID },
 				// 	{ $push: { tasks: taskInfo } }

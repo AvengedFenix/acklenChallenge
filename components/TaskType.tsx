@@ -23,6 +23,7 @@ const TaskType = () => {
 				<img className="taskType ttImg"src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=749&q=80" />
 			</button> */}
 			</div>
+			<CreateTask type={"TV Mount"}/>
 			{showCreate ? (
 				<CreateTask type={type} />
 			) : (

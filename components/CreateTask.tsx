@@ -137,7 +137,7 @@ class CreateTask extends React.Component<{ type }, States> {
 			const res = await fetch("http://localhost:3000/api/Tasks", {
 				method: "POST",
 				headers: {
-					"Accept": "application/json",
+					Accept: "application/json",
 					"Content-Type": "application/json",
 				},
 				body: JSON.stringify(this.state.form),
@@ -193,10 +193,10 @@ class CreateTask extends React.Component<{ type }, States> {
 		const TakenDown = () => {
 			return (
 				<div>
-					<button
+					<input
 						onChange={this.handleTakenDown}
 						defaultChecked={this.state.form.takenDown}
-						// type="checkbox"
+						type="checkbox"
 						className="form-check-input"
 						id="check1"
 					/>
@@ -302,10 +302,10 @@ class CreateTask extends React.Component<{ type }, States> {
 		const Cords = () => {
 			return (
 				<div>
-					<button
+					<input
 						onChange={this.handleCords}
 						defaultChecked={this.state.form.cords}
-						//type="checkbox"
+						type="checkbox"
 						className="form-check-input"
 						id="check1"
 					/>
@@ -319,10 +319,10 @@ class CreateTask extends React.Component<{ type }, States> {
 		const ExternalDevices = () => {
 			return (
 				<div>
-					<button
+					<input
 						onChange={this.handleExternalDevices}
 						defaultChecked={this.state.form.externalDevices}
-						//type="checkbox"
+						type="checkbox"
 						className="form-check-input"
 						id="check1"
 					/>
@@ -346,7 +346,7 @@ class CreateTask extends React.Component<{ type }, States> {
 					<div className="form-group">{<WallMount />}</div>
 					<div className="form-group">{<WallType />}</div>
 					<div className="form-group form-check">{<Cords />}</div>
-					<div className="form-group form-check">{<ExternalDevices />}</div>
+					<div className="form-check">{<ExternalDevices />}</div>
 				</form>
 				<button
 					onClick={this.createTask}
