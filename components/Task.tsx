@@ -18,13 +18,27 @@ const pictures = {
 };
 
 const verifyWorker = async (id) => {
+	console.log("verify");
+	
 	try {
-		const res = await fetch("http://localhost:3000/api/worker", {
-			method: "GET",
+		const res = await fetch("http://localhost:3000/api/checkWorker", {
+			method: "POST",
 			body: id,
 		});
 		const { data } = await res.json();
-		if(data)
+		if (data) {
+			return (
+				<div>
+					<h1>Success</h1>
+				</div>
+			);
+		} else {
+			return (
+				<div>
+					<h1>You're not a worker</h1>
+				</div>
+			);
+		}
 	} catch (error) {
 		console.log(error);
 	}
@@ -36,6 +50,9 @@ const Task: React.FC<Props> = ({ title, first }: Props) => {
 	const { user, loading } = useFetchUser();
 	const randomPhoto = Math.floor(Math.random() * 4);
 	console.log(randomPhoto);
+
+	console.log("Task user: " + JSON.stringify(user));
+	
 
 	return (
 		<div id={String(first)} className="card" style={{ width: "10rem" }}>
@@ -84,9 +101,10 @@ const Task: React.FC<Props> = ({ title, first }: Props) => {
 					<button
 						onClick={() => verifyWorker(user.sub)}
 						className="btn btn-primary view-task"
-					></button>
+					>
+						Pick Task
+						</button>
 				) : null}
-				Pick Task
 			</div>
 		</div>
 	);
