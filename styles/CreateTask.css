@@ -1,0 +1,36 @@
+.create-task-title {
+	font-family: "Open Sans" !important;
+	font-weight: 600;
+	letter-spacing: 4px;
+}
+
+.form-sub-title {
+	font-family: "Roboto";
+	font-weight: 500;
+	font-size: 18px;
+}
+
+.form-check-label {
+	font-family: "Roboto";
+	font-weight: 400;
+}
+
+.form-divider {
+	position: relative;
+	padding: 0.2px;
+	--background-color: rgba(0, 0, 0, 0.15);
+	background-color: #ef9a9a;
+	opacity: 0.4;
+	margin-bottom: 1vh;
+	--margin-top: -0.5vh;
+	--width: 116.2%;
+	--left: -6%;
+}
+#options:not(.active) {
+  background-color: #e57373;
+  border-color: #e57373;
+}
+
+.btn-secondary:not(:disabled):not(.disabled).active {
+	background-color: #d32f2f;
+}

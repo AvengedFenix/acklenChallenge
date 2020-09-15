@@ -1,4 +1,4 @@
-import  mongoose  from 'mongoose';
+ 	import  mongoose  from 'mongoose';
 
 const taskSchema = mongoose.Schema({
 	size: {
@@ -24,7 +24,7 @@ const taskSchema = mongoose.Schema({
 		type: String,
 		required: false,
 	},
-	direction: {
+	address: {
 		type: String,
 		required: false,
 	},

@@ -1,5 +1,6 @@
 import React from "react";
 import { withRouter } from "next/router";
+import { Form, ButtonGroup, ToggleButton } from "react-bootstrap";
 
 type Props = {
 	type: String;
@@ -9,12 +10,13 @@ type States = {
 	form: {
 		type: String;
 		direction: String;
-		size: Number;
+		size: String;
 		takenDown: boolean;
 		wallMount: String;
 		wallType: String;
 		cords: boolean;
 		externalDevices: boolean;
+		address: String
 	};
 	price: Number;
 	showReceipt: boolean;
@@ -33,12 +35,13 @@ class CreateTask extends React.Component<{ type }, States> {
 			form: {
 				type: this.props.type,
 				direction: "Tegucigalpa, Honduras",
-				size: 0,
+				size: "0",
 				takenDown: false,
 				wallMount: "",
 				wallType: "",
 				cords: false,
 				externalDevices: false,
+				address: 
 			},
 			price: 80,
 			showReceipt: false,
@@ -83,9 +86,9 @@ class CreateTask extends React.Component<{ type }, States> {
 	}
 
 	async handleWallMount(e) {
-		let mount = e.target.value;
+		let mount = e.currentTarget.value;
 
-		await await this.setState((prevState) => ({
+		await this.setState((prevState) => ({
 			form: {
 				...prevState.form,
 				wallMount: mount,
@@ -150,43 +153,33 @@ class CreateTask extends React.Component<{ type }, States> {
 
 	render() {
 		const ToggleTVSize = () => {
+			const radios = [
+				{ name: "Radio", value: 'Up to 32"' },
+				{ name: "Radio", value: '33" - 44"' },
+				{ name: "Radio", value: '45" or larger' },
+			];
 			return (
-				<div>
-					<label>How large is your tv?</label>
-
-					<label className="btn btn-secondary active">
-						<button
-							onClick={this.handleSizeChange}
-							// type="radio"
-							name="options"
-							id="option1"
-							value={'Up to 32"'}
-							defaultChecked
-						/>
-						Up to 32"
-					</label>
-					<label className="btn btn-secondary">
-						<button
-							onClick={this.handleSizeChange}
-							// type="radio"
-							name="options"
-							id="option2"
-							value={'33" - 44"'}
-						/>{" "}
-						33" - 44"
-					</label>
-					<label className="btn btn-secondary">
-						<button
-							onClick={this.handleSizeChange}
-							// type="radio"
-							name="options"
-							id="option3"
-							value={'45" or larger'}
-							// active
-						/>{" "}
-						45" or larger
-					</label>
-				</div>
+				<>
+					<label className="form-sub-title">How large is your tv?</label>
+					<br />
+					<ButtonGroup toggle className="mb-2">
+						{radios.map((radio, idx) => (
+							<ToggleButton
+								
+								onChange={this.handleSizeChange}
+								key={idx}
+								type="radio"
+								variant="secondary"
+								name="radio"
+								id="options"
+								value={radio.value}
+								checked={this.state.form.size === radio.value}
+							>
+								{radio.value}
+							</ToggleButton>
+						))}
+					</ButtonGroup>
+				</>
 			);
 		};
 
@@ -208,94 +201,63 @@ class CreateTask extends React.Component<{ type }, States> {
 		};
 
 		const WallMount = () => {
+			const radios = [
+				{ name: "Radio", value: "I already have one" },
+				{ name: "Radio", value: "Fixed" },
+				{ name: "Radio", value: "Tilt" },
+				{ name: "Radio", value: "Full motion" },
+			];
 			return (
-				<div>
-					<label>Wall mount type</label>
-					<label className="btn btn-secondary active">
-						<button
-							onClick={this.handleWallMount}
-							//type="radio"
-							name="options"
-							id="option1"
-							value={"I already have one"}
-							defaultChecked
-						/>
-						I already have one
-					</label>
-					<label className="btn btn-secondary">
-						<button
-							onClick={this.handleWallMount}
-							//type="radio"
-							name="options"
-							id="option2"
-							value={"Fixed"}
-						/>{" "}
-						Fixed
-					</label>
-					<label className="btn btn-secondary">
-						<button
-							onClick={this.handleWallMount}
-							//type="radio"
-							name="options"
-							id="option3"
-							value={"Tilt"}
-						/>{" "}
-						Tilt
-					</label>
-					<label className="btn btn-secondary">
-						<button
-							onClick={this.handleWallMount}
-							//type="radio"
-							name="options"
-							id="option4"
-							value={"Full Motion"}
-						/>{" "}
-						Full Motion
-					</label>
-				</div>
+				<>
+					<label className="form-sub-title">Wall Mount type</label>
+					<br />
+					<ButtonGroup toggle className="mb-2">
+						{radios.map((radio, idx) => (
+							<ToggleButton
+								onChange={this.handleWallMount}
+								key={idx}
+								type="radio"
+								variant="secondary"
+								name="radio"
+								id="options"
+								value={radio.value}
+								checked={this.state.form.wallMount === radio.value}
+							>
+								{radio.value}
+							</ToggleButton>
+						))}
+					</ButtonGroup>
+				</>
 			);
 		};
 
 		const WallType = () => {
+			const radios = [
+				{ name: "Radio", value: "Drywall, plaster or wood" },
+				{ name: "Radio", value: "Brick or concrete" },
+				{ name: "Radio", value: "I don't know" },
+			];
 			return (
-				<div>
-					<label>What type of wall will your TV be mounted on?</label>
-					<label className="btn btn-secondary active">
-						<button
-							// onClick={this.handleSizeChange}
-							onClick={this.handleWallType}
-							//type="radio"
-							name="options"
-							id="option1"
-							value={"Drywall, plaster or wood"}
-							defaultChecked
-						/>
-						Drywall, plaster or wood
-					</label>
-					<label className="btn btn-secondary">
-						<button
-							onClick={this.handleWallType}
-							// onClick={this.handleSizeChange}
-							// type="radio"
-							name="options"
-							id="option2"
-							value={"Brick or concrete"}
-						/>{" "}
-						Brick or concrete
-					</label>
-					<label className="btn btn-secondary">
-						<button
-							onClick={this.handleWallType}
-							// onClick={this.handleSizeChange}
-							//type="radio"
-							name="options"
-							id="option3"
-							value={"I don't know"}
-							//active
-						/>{" "}
-						I don't know
-					</label>
-				</div>
+				<>
+					<label className="form-sub-title">What type of wall will your TV be mounted on?</label>
+					<br />
+					<ButtonGroup toggle className="mb-2">
+						{radios.map((radio, idx) => (
+							<ToggleButton
+								onChange={this.handleWallType}
+								key={idx}
+								type="radio"
+								variant="secondary"
+								name="radio"
+								id="options"
+								value={radio.value}
+								checked={this.state.form.wallType === radio.value}
+							>
+								{radio.value}
+							</ToggleButton>
+						))}
+					</ButtonGroup>
+				</>
 			);
 		};
 
@@ -335,19 +297,31 @@ class CreateTask extends React.Component<{ type }, States> {
 
 		return (
 			<div className="create-task-container container">
-				<h1 className="create-task-title">TV Mount</h1>
+				<h1 className="create-task-title">{this.props.type}</h1>
 				<form>
-					<div className="">
-						<div className="btn-group btn-group-toggle" data-toggle="buttons">
-							{<ToggleTVSize />}
-						</div>
-					</div>
+					<div className="form-group">{<ToggleTVSize />}</div>
+					<div className="form-divider"/>
 					<div className="form-group form-check">{<TakenDown />}</div>
+					<div className="form-divider"/>
 					<div className="form-group">{<WallMount />}</div>
+					<div className="form-divider"/>
 					<div className="form-group">{<WallType />}</div>
+					<div className="form-divider"/>
 					<div className="form-group form-check">{<Cords />}</div>
 					<div className="form-check">{<ExternalDevices />}</div>
 				</form>
+				<br/>
+				<div className="input-group">
+					<div className="input-group-prepend">
+						<span className="input-group-text">Address</span>
+					</div>
+					<textarea
+						className="form-control"
+						aria-label="With textarea"
+						defaultValue={""}
+					/>
+				</div>
+				<br />
 				<button
 					onClick={this.createTask}
 					//type="submit"
