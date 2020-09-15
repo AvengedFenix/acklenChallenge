@@ -1,6 +1,7 @@
 import React from "react";
 import tvicon from "../public/icons/tv_icon.svg";
 import wall from "../public/icons/wall.svg";
+import { useFetchUser } from "../utils/user";
 
 interface Props {
 	title: string;
@@ -12,21 +13,38 @@ const pictures = {
 		0: "https://images.unsplash.com/photo-1539786774582-0707555f1f72?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80",
 		1: "https://images.unsplash.com/photo-1540300512726-61873b2c627d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80",
 		2: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=749&q=80",
-		3: "https://images.unsplash.com/photo-1461151304267-38535e780c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=890&q=80"
+		3: "https://images.unsplash.com/photo-1461151304267-38535e780c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=890&q=80",
 	},
+};
+
+const verifyWorker = async (id) => {
+	try {
+		const res = await fetch("http://localhost:3000/api/worker", {
+			method: "GET",
+			body: id,
+		});
+		const { data } = await res.json();
+		if(data)
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 const Task: React.FC<Props> = ({ title, first }: Props) => {
 	console.log(title);
 
+	const { user, loading } = useFetchUser();
 	const randomPhoto = Math.floor(Math.random() * 4);
 	console.log(randomPhoto);
-	
-	return (
 
+	return (
 		<div id={String(first)} className="card" style={{ width: "10rem" }}>
 			<div className="image-container">
-				<img src={pictures["TV Mount"][randomPhoto]} className="card-img-top" alt="..." />
+				<img
+					src={pictures["TV Mount"][randomPhoto]}
+					className="card-img-top"
+					alt="..."
+				/>
 			</div>
 			<div className="card-body">
 				<h6 className="misc-info">hola</h6>
@@ -62,9 +80,13 @@ const Task: React.FC<Props> = ({ title, first }: Props) => {
 						</div>
 					</div>
 				</div>
-				<a href="#" className="btn btn-primary view-task">
-					Task Details >
-				</a>
+				{user && !loading ? (
+					<button
+						onClick={() => verifyWorker(user.sub)}
+						className="btn btn-primary view-task"
+					></button>
+				) : null}
+				Pick Task
 			</div>
 		</div>
 	);

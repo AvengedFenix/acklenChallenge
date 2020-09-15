@@ -3,7 +3,7 @@ import { useFetchUser } from "../utils/user";
 
 const createWorker = async (worker) => {
 	try {
-		const res = await fetch("http://localhost:3000/api/newWorker", {
+		const res = await fetch("http://localhost:3000/api/worker", {
 			method: "POST",
 			headers: {
 				"Accept": "application/json",
@@ -12,7 +12,7 @@ const createWorker = async (worker) => {
 			body: JSON.stringify(worker),
 		});
 	} catch (error) {
-		console.log(e);
+		console.log(error);
 	}
 };
 
