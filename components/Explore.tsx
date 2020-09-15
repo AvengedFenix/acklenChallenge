@@ -32,11 +32,14 @@ class Explore extends React.Component<any> {
 	render() {
 		let cards: JSX.Element = this.state.tasks.map((task, index) => {
 			console.log("index: " + index);
-
-			if (index % 4 == 0) {
-				return <Task first={true} title={task.type} key={index} />;
-			} else {
-				return <Task first={false} title={task.type} key={index} />;
+			console.log("id:"+ task._id);
+			
+			if(!task.taken){
+				if (index % 4 == 0) {
+					return <Task id={task._id} first={true} title={task.type} key={index} />;
+				} else {
+					return <Task id={task._id} first={false} title={task.type} key={index} />;
+				}
 			}
 		});
 

@@ -8,9 +8,11 @@ export default async (req, res) => {
 	switch (method) {
 		case "POST":
 			try {
+        console.log("checkWorker: " + req.body);
+        
 				const id = req.body.id;
 				const worker = await Worker.find({ auth0Id: id });
-				console.log("Worker: " + worker);
+        console.log("Worker: " + worker);
 				if (worker) {
 					res.status(200).json({ success: true, data: true });
 				} else {

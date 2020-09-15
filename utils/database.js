@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+mongoose.set('useFindAndModify', false)
 const connection = {};
 
 async function dbConnect() {

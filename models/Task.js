@@ -36,6 +36,9 @@ const taskSchema = mongoose.Schema({
 		type: Date,
 		required: false,
 	},
+	taken: {
+		type: Boolean,
+	}
 });
 
 module.exports = mongoose.models.Task || mongoose.model("Task", taskSchema);

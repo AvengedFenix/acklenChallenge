@@ -6,6 +6,7 @@ import { useFetchUser } from "../utils/user";
 interface Props {
 	title: string;
 	first: boolean;
+	id: string;
 }
 
 const pictures = {
@@ -17,42 +18,59 @@ const pictures = {
 	},
 };
 
-const verifyWorker = async (id) => {
-	console.log("verify");
-	
+const url = "http://localhost:3000/api/";
+
+const hideTask = async (info) => {
+	console.log(JSON.stringify(info));
+
 	try {
-		const res = await fetch("http://localhost:3000/api/checkWorker", {
+		const res = await fetch(url + "hideTask", {
 			method: "POST",
-			body: id,
+			headers: {
+				"Accept": "application/json",
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(info),
 		});
-		const { data } = await res.json();
-		if (data) {
-			return (
-				<div>
-					<h1>Success</h1>
-				</div>
-			);
-		} else {
-			return (
-				<div>
-					<h1>You're not a worker</h1>
-				</div>
-			);
-		}
 	} catch (error) {
 		console.log(error);
 	}
 };
 
-const Task: React.FC<Props> = ({ title, first }: Props) => {
+const verifyWorker = async (info) => {
+	console.log("verify");
+	console.log(JSON.stringify(info));
+
+	try {
+		const res = await fetch(url + "checkWorker", {
+			method: "POST",
+			headers: {
+				"Accept": "application/json",
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(info),
+		});
+		const { data } = await res.json();
+		return data;
+	} catch (error) {
+		console.log(error);
+	}
+	//hideTask(info);
+};
+
+const Task: React.FC<Props> = ({ title, first, id }: Props) => {
 	console.log(title);
+	console.log("in task: " + id);
 
 	const { user, loading } = useFetchUser();
 	const randomPhoto = Math.floor(Math.random() * 4);
 	console.log(randomPhoto);
 
-	console.log("Task user: " + JSON.stringify(user));
-	
+	const info = {
+		taskID: id,
+		workerID: user.sub,
+		title: title,
+	};
 
 	return (
 		<div id={String(first)} className="card" style={{ width: "10rem" }}>
@@ -99,11 +117,17 @@ const Task: React.FC<Props> = ({ title, first }: Props) => {
 				</div>
 				{user && !loading ? (
 					<button
-						onClick={() => verifyWorker(user.sub)}
+						onClick={() => {
+							if (verifyWorker(info)) {
+								hideTask(info);
+							}
+							{
+							}
+						}}
 						className="btn btn-primary view-task"
 					>
 						Pick Task
-						</button>
+					</button>
 				) : null}
 			</div>
 		</div>
