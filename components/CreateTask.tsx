@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter } from "next/router";
-import { Form, ButtonGroup, ToggleButton } from "react-bootstrap";
+import { Form, ButtonGroup, ToggleButton, Alert } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 
 type Props = {
@@ -10,7 +10,6 @@ type Props = {
 type States = {
 	form: {
 		type: String;
-		direction: String;
 		size: String;
 		takenDown: boolean;
 		wallMount: String;
@@ -28,6 +27,7 @@ type States = {
 	uEmail: String;
 	uZip: Number;
 	numberTV: Number;
+	alert: Boolean;
 };
 
 class CreateTask extends React.Component<{ type }, States> {
@@ -36,7 +36,6 @@ class CreateTask extends React.Component<{ type }, States> {
 		this.state = {
 			form: {
 				type: this.props.type,
-				direction: "Tegucigalpa, Honduras",
 				size: "0",
 				takenDown: false,
 				wallMount: "",
@@ -54,7 +53,10 @@ class CreateTask extends React.Component<{ type }, States> {
 			uEmail: "",
 			uZip: 0,
 			numberTV: 0,
+			alert: false,
 		};
+		console.log("constructor: " + this.state.form.date);
+
 		this.handleSizeChange = this.handleSizeChange.bind(this);
 		this.handleTakenDown = this.handleTakenDown.bind(this);
 		this.handleWallMount = this.handleWallMount.bind(this);
@@ -141,18 +143,29 @@ class CreateTask extends React.Component<{ type }, States> {
 	async createTask() {
 		console.log(this.state.form);
 
-		try {
-			const res = await fetch("http://localhost:3000/api/tasks", {
-				method: "POST",
-				headers: {
-					"Accept": "application/json",
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(this.state.form),
-			});
-			//router.push("/");
-		} catch (e) {
-			console.log(e);
+		const form = this.state.form;
+		if (
+			form.address == "" &&
+			form.size == "0" &&
+			form.wallMount == "" &&
+			form.wallType == ""
+		) {
+			this.setState({ alert: true });
+		} else {
+			try {
+				const res = await fetch("http://localhost:3000/api/tasks", {
+					method: "POST",
+					headers: {
+						Accept: "application/json",
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(this.state.form),
+				});
+				this.setState({ alert: false });
+				//router.push("/");
+			} catch (e) {
+				console.log(e);
+			}
 		}
 	}
 
@@ -335,6 +348,9 @@ class CreateTask extends React.Component<{ type }, States> {
 
 		return (
 			<div className="create-task-container container">
+				{this.state.alert ? (
+					<Alert variant='danger'>You need to fill all the information required</Alert>
+				) : null}
 				<h1 className="create-task-title">{this.props.type}</h1>
 				<form>
 					<div className="form-group">{<ToggleTVSize />}</div>
@@ -370,7 +386,6 @@ class CreateTask extends React.Component<{ type }, States> {
 				/>
 				<br />
 				<br />
-
 				<button
 					onClick={this.createTask}
 					//type="submit"
