@@ -7,6 +7,7 @@ interface Props {
 	title: string;
 	first: boolean;
 	id: string;
+	address: string;
 }
 
 const pictures = {
@@ -27,7 +28,7 @@ const hideTask = async (info) => {
 		const res = await fetch(url + "hideTask", {
 			method: "POST",
 			headers: {
-				Accept: "application/json",
+				"Accept": "application/json",
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(info),
@@ -40,12 +41,11 @@ const hideTask = async (info) => {
 const verifyWorker = async (info) => {
 	console.log("verify");
 	console.log(JSON.stringify(info));
-
 	try {
 		const res = await fetch(url + "checkWorker", {
 			method: "POST",
 			headers: {
-				Accept: "application/json",
+				"Accept": "application/json",
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(info),
@@ -58,9 +58,9 @@ const verifyWorker = async (info) => {
 	//hideTask(info);
 };
 
-const Task: React.FC<Props> = ({ title, first, id }: Props) => {
+const Task: React.FC<Props> = ({ title, first, id, address }: Props) => {
 	console.log(title);
-	console.log("in task: " + id);
+	console.log("in task: " + address);
 
 	const { user, loading } = useFetchUser();
 	const randomPhoto = Math.floor(Math.random() * 4);
@@ -88,7 +88,7 @@ const Task: React.FC<Props> = ({ title, first, id }: Props) => {
 			<div className="card-body">
 				<h6 className="misc-info">hola</h6>
 				<h5 className="card-title">{title}</h5>
-				<p className="location">Tegucigalpa, Honduras</p>
+				<p className="location">{address}</p>
 				<div className="divider" />
 				<div className="details">
 					<img className="card-icon" src={tvicon}></img>

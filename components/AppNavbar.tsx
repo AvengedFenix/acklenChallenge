@@ -97,8 +97,8 @@ const AppNavbar = () => {
 
 	return (
 		<nav id="nav" className="navbar navbar-expand-lg navbar-light bg-light">
-			<a className="navbar-brand" href="#">
-				Navbar
+			<a className="navbar-brand" href="/">
+				PolyTasks
 			</a>
 			<ul className="navbar-nav mr-auto">
 				<li className="nav-item active">

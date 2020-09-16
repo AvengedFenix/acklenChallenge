@@ -19,7 +19,6 @@ const taskSchema = mongoose.Schema({
 	externalDevices: {
 		type: String,
 	},
-
 	type: {
 		type: String,
 		required: false,

@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter } from "next/router";
 import { Form, ButtonGroup, ToggleButton } from "react-bootstrap";
+import DatePicker from "react-datepicker";
 
 type Props = {
 	type: String;
@@ -16,7 +17,9 @@ type States = {
 		wallType: String;
 		cords: boolean;
 		externalDevices: boolean;
-		address: String
+		address: String;
+		taken: Boolean;
+		date: Date;
 	};
 	price: Number;
 	showReceipt: boolean;
@@ -25,7 +28,6 @@ type States = {
 	uEmail: String;
 	uZip: Number;
 	numberTV: Number;
-	date: Date;
 };
 
 class CreateTask extends React.Component<{ type }, States> {
@@ -41,7 +43,9 @@ class CreateTask extends React.Component<{ type }, States> {
 				wallType: "",
 				cords: false,
 				externalDevices: false,
-				address: 
+				address: "",
+				taken: false,
+				date: new Date(),
 			},
 			price: 80,
 			showReceipt: false,
@@ -50,7 +54,6 @@ class CreateTask extends React.Component<{ type }, States> {
 			uEmail: "",
 			uZip: 0,
 			numberTV: 0,
-			date: null,
 		};
 		this.handleSizeChange = this.handleSizeChange.bind(this);
 		this.handleTakenDown = this.handleTakenDown.bind(this);
@@ -59,6 +62,8 @@ class CreateTask extends React.Component<{ type }, States> {
 		this.handleCords = this.handleCords.bind(this);
 		this.handleExternalDevices = this.handleExternalDevices.bind(this);
 		this.createTask = this.createTask.bind(this);
+		this.handleAddress = this.handleAddress.bind(this);
+		this.handleDate = this.handleDate.bind(this);
 	}
 
 	async handleSizeChange(e) {
@@ -137,10 +142,10 @@ class CreateTask extends React.Component<{ type }, States> {
 		console.log(this.state.form);
 
 		try {
-			const res = await fetch("http://localhost:3000/api/Tasks", {
+			const res = await fetch("http://localhost:3000/api/tasks", {
 				method: "POST",
 				headers: {
-					Accept: "application/json",
+					"Accept": "application/json",
 					"Content-Type": "application/json",
 				},
 				body: JSON.stringify(this.state.form),
@@ -149,6 +154,30 @@ class CreateTask extends React.Component<{ type }, States> {
 		} catch (e) {
 			console.log(e);
 		}
+	}
+
+	async handleAddress(e) {
+		let address = e.target.value;
+
+		await this.setState((prevState) => ({
+			form: {
+				...prevState.form,
+				address: address,
+			},
+		}));
+	}
+
+	async handleDate(e) {
+		let date = e;
+
+		console.log(date);
+
+		await this.setState((prevState) => ({
+			form: {
+				...prevState.form,
+				date: date,
+			},
+		}));
 	}
 
 	render() {
@@ -165,7 +194,6 @@ class CreateTask extends React.Component<{ type }, States> {
 					<ButtonGroup toggle className="mb-2">
 						{radios.map((radio, idx) => (
 							<ToggleButton
-								
 								onChange={this.handleSizeChange}
 								key={idx}
 								type="radio"
@@ -239,7 +267,9 @@ class CreateTask extends React.Component<{ type }, States> {
 			];
 			return (
 				<>
-					<label className="form-sub-title">What type of wall will your TV be mounted on?</label>
+					<label className="form-sub-title">
+						What type of wall will your TV be mounted on?
+					</label>
 					<br />
 					<ButtonGroup toggle className="mb-2">
 						{radios.map((radio, idx) => (
@@ -295,33 +325,52 @@ class CreateTask extends React.Component<{ type }, States> {
 			);
 		};
 
+		const CustomDateInput = ({ value, onClick }) => {
+			return (
+				<button className="custom-date-input" onClick={onClick}>
+					{value}
+				</button>
+			);
+		};
+
 		return (
 			<div className="create-task-container container">
 				<h1 className="create-task-title">{this.props.type}</h1>
 				<form>
 					<div className="form-group">{<ToggleTVSize />}</div>
-					<div className="form-divider"/>
+					<div className="form-divider" />
 					<div className="form-group form-check">{<TakenDown />}</div>
-					<div className="form-divider"/>
+					<div className="form-divider" />
 					<div className="form-group">{<WallMount />}</div>
-					<div className="form-divider"/>
+					<div className="form-divider" />
 					<div className="form-group">{<WallType />}</div>
-					<div className="form-divider"/>
+					<div className="form-divider" />
 					<div className="form-group form-check">{<Cords />}</div>
 					<div className="form-check">{<ExternalDevices />}</div>
 				</form>
-				<br/>
+				<br />
 				<div className="input-group">
 					<div className="input-group-prepend">
 						<span className="input-group-text">Address</span>
 					</div>
 					<textarea
+						onChange={this.handleAddress}
 						className="form-control"
 						aria-label="With textarea"
 						defaultValue={""}
 					/>
 				</div>
 				<br />
+				<DatePicker
+					id="date"
+					selected={this.state.form.date}
+					//value={this.state.form.date}
+					onChange={this.handleDate}
+					customInput={<CustomDateInput />}
+				/>
+				<br />
+				<br />
+
 				<button
 					onClick={this.createTask}
 					//type="submit"

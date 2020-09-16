@@ -4,6 +4,7 @@ import "../styles/Explore.css";
 import "../styles/CreateTask.css"
 import dynamic from "next/dynamic";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "react-datepicker/dist/react-datepicker.css";
 //const Layout = dynamic(() => import("../components/Layout"));
 import Layout from "./../components/Layout";
 
