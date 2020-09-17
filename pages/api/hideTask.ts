@@ -38,7 +38,7 @@ export default async (req, res) => {
 						if (err) {
 							console.log(err);
 						} else {
-							console.log("Updated Docs : ", docs);
+							console.log("Updated worker Docs : ", docs);
 						}
 					}
 				);

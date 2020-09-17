@@ -10,13 +10,7 @@ const createTask = () => {
 
 	return (
 		<div className="container">
-			{user && !loading ? (
-				<TaskType />
-			) : (
-				<div>
-					<p>Big shaq</p>
-				</div>
-			)}
+			{user && !loading ? <TaskType /> : null}
 			{!user && !loading ? <LoginButton /> : null}
 		</div>
 	);

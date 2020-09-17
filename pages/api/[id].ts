@@ -1,4 +1,6 @@
 import dbConnect from "../../utils/database";
+import Task from "../../models/Task";
+import Worker from "../../models/Worker";
 //Aqui tengo que importar el model del los projects
 
 export default async (req, res) => {
@@ -9,8 +11,7 @@ export default async (req, res) => {
 
 	switch (method) {
 		case "GET":
-			try {
-			} catch (error) {}
+			
 			break;
 		case "POST":
 			try {

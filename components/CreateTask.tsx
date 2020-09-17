@@ -349,7 +349,9 @@ class CreateTask extends React.Component<{ type }, States> {
 		return (
 			<div className="create-task-container container">
 				{this.state.alert ? (
-					<Alert variant='danger'>You need to fill all the information required</Alert>
+					<Alert variant="danger">
+						You need to fill all the information required
+					</Alert>
 				) : null}
 				<h1 className="create-task-title">{this.props.type}</h1>
 				<form>
