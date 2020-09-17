@@ -24,6 +24,7 @@
 		"pages/createTask.js",
 		"pages/api/profile.ts",
 		"pages/api/tasks.ts",
+		"/api/tasks.ts",
 		"pages/api/logout.ts",
 		"pages/api/callback.ts",
 		"pages/api/login.ts",
