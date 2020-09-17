@@ -1,6 +1,6 @@
 import React from "react";
-import tvicon from "../public/icons/tv_icon.svg";
-import wall from "../public/icons/wall.svg";
+// import tvicon from "../public/icons/tv_icon.svg";
+// import wall from "../public/icons/wall.svg";
 import { useFetchUser } from "../utils/user";
 
 interface Props {
@@ -91,12 +91,12 @@ const Task: React.FC<Props> = ({ title, first, id, address }: Props) => {
 				<p className="location">{address}</p>
 				<div className="divider" />
 				<div className="details">
-					<img className="card-icon" src={tvicon}></img>
+					{/* <img className="card-icon" src={tvicon}></img> */}
 					<p className="special">4</p>
 					<p className="special" id="special-text">
 						TVs
 					</p>
-					<img className="card-icon" id="second-icon" src={wall} />
+					{/* <img className="card-icon" id="second-icon" src={wall} /> */}
 					<p className="special" id="special-text">
 						Brick
 					</p>
