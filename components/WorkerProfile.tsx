@@ -52,10 +52,10 @@ class WorkerProfile extends React.Component<any> {
 	async componentDidMount() {
 		console.log("props: " + this.props.id);
 		let object = {
-			id: this.props.id
-		}
+			id: this.props.id,
+		};
 
-		const res = await fetch("http://localhost:3000/api/workerTasks", {
+		const res = await fetch(process.env.VERCEL_URL + "/api/workerTasks", {
 			method: "POST",
 			headers: {
 				Accept: "application/json",

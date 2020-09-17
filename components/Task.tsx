@@ -19,7 +19,7 @@ const pictures = {
 	},
 };
 
-const url = process.env.APP_URL +"api/";
+const url = process.env.VERCEL_URL +"api/";
 
 const hideTask = async (info) => {
 	console.log(JSON.stringify(info));
