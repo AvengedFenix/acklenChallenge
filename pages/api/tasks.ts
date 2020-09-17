@@ -3,7 +3,7 @@ import Task from "../../models/Task";
 
 dbConnect();
 
-export default async (req, res) => {
+export default async function tasks(req, res) {
 	const { method } = req;
 
 	switch (method) {
