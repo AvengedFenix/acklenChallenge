@@ -55,7 +55,7 @@ class WorkerProfile extends React.Component<any> {
 			id: this.props.id,
 		};
 
-		const res = await fetch(process.env.VERCEL_URL + "/api/workerTasks", {
+		const res = await fetch(process.env.VERCEL_URL + "api/workerTasks", {
 			method: "POST",
 			headers: {
 				Accept: "application/json",
