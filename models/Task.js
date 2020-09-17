@@ -1,4 +1,4 @@
- 	import  mongoose  from 'mongoose';
+const mongoose = require("mongoose");
 
 const taskSchema = mongoose.Schema({
 	size: {
@@ -37,7 +37,7 @@ const taskSchema = mongoose.Schema({
 	},
 	taken: {
 		type: Boolean,
-	}
+	},
 });
 
 module.exports = mongoose.models.Task || mongoose.model("Task", taskSchema);

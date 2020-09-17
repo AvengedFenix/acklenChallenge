@@ -4,7 +4,11 @@ import Card from "react-bootstrap/Card";
 import Task from "./../components/Task";
 import Register from "./Register";
 
-class Explore extends React.Component<any> {
+interface States {
+	tasks: Array<any>;
+}
+
+class Explore extends React.Component<any, States> {
 	constructor(props: any) {
 		super(props);
 		this.state = {
@@ -30,7 +34,7 @@ class Explore extends React.Component<any> {
 	}
 
 	render() {
-		let cards: JSX.Element = this.state.tasks.map((task, index) => {
+		let cards = this.state.tasks.map((task, index) => {
 			console.log("index: " + index);
 			console.log("id:" + task._id);
 			console.log("address: " + task.address);

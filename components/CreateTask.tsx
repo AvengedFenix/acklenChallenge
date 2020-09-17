@@ -338,12 +338,8 @@ class CreateTask extends React.Component<{ type }, States> {
 			);
 		};
 
-		const CustomDateInput = ({ value, onClick }) => {
-			return (
-				<button className="custom-date-input" onClick={onClick}>
-					{value}
-				</button>
-			);
+		const CustomDateInput = (/*{ value, onClick }*/) => {
+			return <button className="custom-date-input"></button>;
 		};
 
 		return (
