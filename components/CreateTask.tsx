@@ -153,7 +153,7 @@ class CreateTask extends React.Component<{ type }, States> {
 			this.setState({ alert: true });
 		} else {
 			try {
-				const res = await fetch("http://localhost:3000/api/tasks", {
+				const res = await fetch(process.env.VERCEL_URL + "/api/tasks", {
 					method: "POST",
 					headers: {
 						Accept: "application/json",
