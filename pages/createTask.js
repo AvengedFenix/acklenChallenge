@@ -2,6 +2,7 @@ import React from "react";
 import { useFetchUser } from "../utils/user";
 import TaskType from "../components/TaskType";
 import LoginButton from "../components/LoginButton";
+import Register from "./../components/Register";
 
 const createTask = () => {
 	const { user, loading } = useFetchUser();
@@ -9,9 +10,9 @@ const createTask = () => {
 	console.log("User: " + user);
 
 	return (
-		<div className="container">
+		<div className="container register-container">
 			{user && !loading ? <TaskType /> : null}
-			{!user && !loading ? <LoginButton /> : null}
+			{!user && !loading ? <Register /> : null}
 		</div>
 	);
 };

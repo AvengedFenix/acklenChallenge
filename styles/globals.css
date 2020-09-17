@@ -22,6 +22,7 @@ a {
 .container {
 	margin: 0 auto;
 	width: 1080px;
+	--text-align: center;
 }
 
 

@@ -15,7 +15,7 @@ class Explore extends React.Component<any, States> {
 			tasks: [],
 		};
 		console.log(process.env);
-		
+		this.rowTasks = this.rowTasks.bind(this);
 	}
 
 	async componentDidMount() {
@@ -35,38 +35,59 @@ class Explore extends React.Component<any, States> {
 		}
 	}
 
-	render() {
-		let cards = this.state.tasks.map((task, index) => {
+	rowTasks() {
+		let rows = {};
+		let counter = 1;
+		let copy = 0;
+		this.state.tasks.map((task, index) => {
 			console.log("index: " + index);
 			console.log("id:" + task._id);
 			console.log("address: " + task.address);
 
 			if (!task.taken) {
-				if (index % 4 == 0) {
-					return (
-						<Task
-							id={task._id}
-							first={true}
-							title={task.type}
-							key={index}
-							address={task.address}
-						/>
-					);
+				rows[counter] = rows[counter] ? [...rows[counter]] : [];
+
+				console.log("Counter: " + counter);
+				if ((index - copy) % 4 === 0 && index !== 0) {
+					counter = counter + 1;
+					rows[counter] = rows[counter] ? [...rows[counter]] : [];
+					rows[counter].push(task);
 				} else {
-					return (
-						<Task
-							id={task._id}
-							first={false}
-							title={task.type}
-							key={index}
-							address={task.address}
-						/>
-					);
+					rows[counter].push(task);
 				}
+			} else {
+				copy++;
 			}
 		});
+		console.log(rows);
+		return rows;
+	}
 
-		return <div className="tasks-container">{cards}</div>;
+	render() {
+		const rows = this.rowTasks();
+		let first = false;
+		let cards = Object.keys(rows).map((row) => {
+			return (
+				<div className="row">
+					{rows[row].map((task, index) => {
+						index == 0 ? (first = true) : (first = false);
+						return (
+							<div className="col-sm">
+								<Task
+									id={task._id}
+									first={first}
+									title={task.type}
+									key={index}
+									address={task.address}
+								/>
+							</div>
+						);
+					})}
+				</div>
+			);
+		});
+
+		return <div className="tasks-container container">{cards}</div>;
 	}
 }
 

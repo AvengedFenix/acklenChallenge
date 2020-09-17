@@ -3,7 +3,7 @@ import { useFetchUser } from "../utils/user";
 
 const createWorker = async (worker) => {
 	try {
-		const res = await fetch(process.env.VERCEL_URL + "/api/worker", {
+		const res = await fetch("/api/worker", {
 			method: "POST",
 			headers: {
 				"Accept": "application/json",

@@ -25,6 +25,7 @@ const Layout = ({ children }) => {
 					<title>PolyTasks</title>
 				</Head>
 				<AppNavbar />
+
 				{children}
 		</div>
 	);

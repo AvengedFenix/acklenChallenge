@@ -19,16 +19,16 @@ const pictures = {
 	},
 };
 
-const url = process.env.VERCEL_URL +"api/";
+const url = process.env.VERCEL_URL + "api/";
 
 const hideTask = async (info) => {
 	console.log(JSON.stringify(info));
 
 	try {
-		const res = await fetch(url + "hideTask", {
+		const res = await fetch("/api/hideTask", {
 			method: "POST",
 			headers: {
-				"Accept": "application/json",
+				Accept: "application/json",
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(info),
@@ -42,10 +42,10 @@ const verifyWorker = async (info) => {
 	console.log("verify");
 	console.log(JSON.stringify(info));
 	try {
-		const res = await fetch(url + "checkWorker", {
+		const res = await fetch("/api/checkWorker", {
 			method: "POST",
 			headers: {
-				"Accept": "application/json",
+				Accept: "application/json",
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(info),
@@ -86,17 +86,18 @@ const Task: React.FC<Props> = ({ title, first, id, address }: Props) => {
 				/>
 			</div>
 			<div className="card-body">
-				<h6 className="misc-info">hola</h6>
+				<h6 className="misc-info">$100</h6>
 				<h5 className="card-title">{title}</h5>
 				<p className="location">{address}</p>
 				<div className="divider" />
 				<div className="details">
 					{/* <img className="card-icon" src={tvicon}></img> */}
-					<p className="special">4</p>
+					<p className="special">1</p>
 					<p className="special" id="special-text">
 						TVs
 					</p>
 					{/* <img className="card-icon" id="second-icon" src={wall} /> */}
+					<p className="special sp2">Wall Type</p>
 					<p className="special" id="special-text">
 						Brick
 					</p>

@@ -24,23 +24,23 @@ const AppNavbar = () => {
 						<a className="nav-link">Home</a>
 					</Link>
 				</li>
-				<li className="nav-item">
+				{/* <li className="nav-item">
 					<Link href="/about">
 						<a className="nav-link" href="#">
 							Link
 						</a>
 					</Link>
-				</li>
+				</li> */}
 				<Link href="/createTask">
 					<a className="nav-link">Create Task</a>
 				</Link>
 				{user && !loading ? (
 					<>
-						<li className="nav-item">
+						{/* <li className="nav-item">
 							<Link href="/profile">
 								<a className="nav-link">Profile</a>
 							</Link>
-						</li>
+						</li> */}
 						<li className="nav-item">
 							<BecomeWorker
 								name={user.name}
