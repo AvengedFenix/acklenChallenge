@@ -1,30 +1,37 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": false,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve"
-  },
-  "include": [
-    "next-env.d.ts",
-    "custom.d.ts",
-    "**/*.ts",
-    "**/*.tsx", "pages/_app.js", "pages/about.js", "pages/createTask.js", "pages/api/profile.ts", "pages/api/logout.ts", "pages/api/callback.ts", "pages/api/login.ts", "utils", "pages/api/tasks.ts", "models/Worker.js", "components/CreateTask.js", "components/Task.js"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+	"compilerOptions": {
+		"target": "es5",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"allowJs": true,
+		"skipLibCheck": true,
+		"strict": false,
+		"forceConsistentCasingInFileNames": true,
+		"noEmit": true,
+		"esModuleInterop": true,
+		"module": "esnext",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"jsx": "preserve"
+	},
+	"include": [
+		"next-env.d.ts",
+		"custom.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		"pages/_app.js",
+		"pages/about.js",
+		"pages/createTask.js",
+		"pages/api/profile.ts",
+		"pages/api/tasks.ts",
+		"pages/api/logout.ts",
+		"pages/api/callback.ts",
+		"pages/api/login.ts",
+		"utils",
+		"pages/api/tasks.ts",
+		"models/Worker.js",
+		"components/CreateTask.js",
+		"components/Task.js"
+	],
+	"exclude": ["node_modules"]
 }
