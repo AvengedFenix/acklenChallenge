@@ -17,7 +17,7 @@ class Explore extends React.Component<any, States> {
 	}
 
 	async componentDidMount() {
-		const res = await fetch(process.env.APP_URL+"api/tasks");
+		const res = await fetch(process.env.APP_URL + "api/tasks");
 		const { data } = await res.json();
 
 		console.log("Data: " + JSON.stringify(data));
