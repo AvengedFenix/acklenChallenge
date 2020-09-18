@@ -1,0 +1,51 @@
+.taskTypeContainer {
+	padding-top: 8vh;
+	flex-direction: row;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.taskType {
+	background-color: #ffffff !important;
+	color: #000000;
+	border: none !important;
+	height: 8vh;
+	width: 12vw;
+	border-radius: 7px !important;
+	display: absolute;
+	box-shadow: 5px 5px 40px 0px rgba(0, 0, 0, 0.16);
+	font-family: "Open Sans";
+	font-weight: 800;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	--background: url("https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=749&q=80");
+}
+
+.typeTitle {
+	color: black;
+	position: relative;
+	margin: auto;
+	padding: 18%;
+	height: 50%;
+	width: auto;
+	text-align: center;
+	filter: blur(0px) !important;
+}
+
+.taskType:hover .ttImg {
+	transform: scale(1.1);
+}
+
+.instructions {
+	font-weight: 300;
+	font-family: sans-serif;
+	opacity: 0.7;
+}
+
+@media only screen and (max-width: 720px){
+	.taskType {
+		margin-top: 16vh;
+		width: 16vh
+	}
+}
