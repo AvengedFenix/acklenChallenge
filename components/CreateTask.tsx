@@ -339,8 +339,8 @@ class CreateTask extends React.Component<{ type }, States> {
 			);
 		};
 
-		const CustomDateInput = ({ value }) => {
-			return <button className="custom-date-input">{value}</button>;
+		const CustomDateInput = ({ value, onClick }) => {
+			return <button className="custom-date-input" onClick={onClick}>{value}</button>;
 		};
 
 		return (
@@ -384,7 +384,7 @@ class CreateTask extends React.Component<{ type }, States> {
 					selected={this.state.form.date}
 					value={this.state.form.date}
 					onChange={this.handleDate}
-					customInput={<CustomDateInput value={this.state.form.date} />}
+					customInput={<CustomDateInput value={this.state.form.date} onClick={this.handleDate} />}
 				/>
 				<br />
 				<br />
