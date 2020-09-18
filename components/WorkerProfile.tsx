@@ -139,7 +139,7 @@ class WorkerProfile extends React.Component<any, States> {
 
 		return (
 			<div className="tasks-container container">
-				{/* <h1 className="title">Your Tasks</h1> */}
+				{/* <h1 c	lassName="title">Your Tasks</h1> */}
 
 				{this.state.tasks == null || this.state.tasks == undefined ? (
 					<>
