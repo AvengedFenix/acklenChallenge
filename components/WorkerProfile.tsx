@@ -88,7 +88,7 @@ class WorkerProfile extends React.Component<any, States> {
 				rows[counter] = rows[counter] ? [...rows[counter]] : [];
 
 				console.log("Counter: " + counter);
-				if ((index - copy) % 4 === 0 && index !== 0) {
+				if ((index - copy) % 3 === 0 && index !== 0) {
 					counter = counter + 1;
 					rows[counter] = rows[counter] ? [...rows[counter]] : [];
 					rows[counter].push(task);

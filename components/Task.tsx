@@ -17,6 +17,7 @@ interface Props {
 	date: Date;
 	taken: boolean;
 	worker: boolean;
+	issuer: string;
 }
 
 const pictures = {
@@ -80,7 +81,8 @@ const Task: React.FC<Props> = ({
 	externalDevices,
 	date,
 	taken,
-	worker
+	worker,
+	issuer,
 }: Props) => {
 	console.log(title);
 	console.log("in task: " + address);
@@ -104,6 +106,7 @@ const Task: React.FC<Props> = ({
 			externalDevices: externalDevices,
 			date: date,
 			taken: false,
+			issuer: issuer
 		};
 	}
 
@@ -144,7 +147,7 @@ const Task: React.FC<Props> = ({
 							/>
 						</div>
 						<div className="task-issuer-text">
-							<p className="card-text">Obi-Wan Kenobi</p>
+							<p className="card-text">{issuer}</p>
 							<button className="view-profile btn btn-primary">
 								View profile
 							</button>

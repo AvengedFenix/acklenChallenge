@@ -5,6 +5,7 @@ import DatePicker from "react-datepicker";
 
 type Props = {
 	type: String;
+	userName: String;
 };
 
 type States = {
@@ -19,6 +20,7 @@ type States = {
 		address: String;
 		taken: Boolean;
 		date: Date;
+		issuer: String;
 	};
 	price: Number;
 	showReceipt: boolean;
@@ -31,7 +33,7 @@ type States = {
 	success: Boolean;
 };
 
-class CreateTask extends React.Component<{ type }, States> {
+class CreateTask extends React.Component<{ type; userName }, States> {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -46,6 +48,7 @@ class CreateTask extends React.Component<{ type }, States> {
 				address: "",
 				taken: false,
 				date: new Date(),
+				issuer: this.props.userName,
 			},
 			price: 80,
 			showReceipt: false,
@@ -144,7 +147,12 @@ class CreateTask extends React.Component<{ type }, States> {
 
 	async createTask() {
 		console.log(this.state.form);
-
+		await this.setState((prevState) => ({
+			form: {
+				...prevState.form,
+				issuer: this.props.userName,
+			},
+		}));
 		const form = this.state.form;
 		if (
 			form.address == "" &&
@@ -340,7 +348,11 @@ class CreateTask extends React.Component<{ type }, States> {
 		};
 
 		const CustomDateInput = ({ value, onClick }) => {
-			return <button className="custom-date-input" onClick={onClick}>{value}</button>;
+			return (
+				<button className="custom-date-input" onClick={onClick}>
+					{value}
+				</button>
+			);
 		};
 
 		return (
@@ -384,7 +396,12 @@ class CreateTask extends React.Component<{ type }, States> {
 					selected={this.state.form.date}
 					value={this.state.form.date}
 					onChange={this.handleDate}
-					customInput={<CustomDateInput value={this.state.form.date} onClick={this.handleDate} />}
+					customInput={
+						<CustomDateInput
+							value={this.state.form.date}
+							onClick={this.handleDate}
+						/>
+					}
 				/>
 				<br />
 				<br />

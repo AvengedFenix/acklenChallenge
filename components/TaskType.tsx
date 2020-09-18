@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import CreateTask from "./CreateTask";
+import { useFetchUser } from "../utils/user";
 
 const TaskType = () => {
 	const [showCreate, setShowCreate] = useState(false);
 	const [type, setType] = useState("");
+	const {user, loading} = useFetchUser();
 
 	return (
 		<div>
@@ -24,7 +26,7 @@ const TaskType = () => {
 			</div>
 			<br />
 			{showCreate ? (
-				<CreateTask type={type} />
+				<CreateTask type={type} userName={user.name} />
 			) : (
 				<div>
 					<p className="instructions">

@@ -6,6 +6,7 @@ import Register from "./Register";
 
 interface States {
 	tasks: Array<any>;
+	first: boolean;
 }
 
 class Explore extends React.Component<any, States> {
@@ -13,6 +14,7 @@ class Explore extends React.Component<any, States> {
 		super(props);
 		this.state = {
 			tasks: [],
+			first: true,
 		};
 		console.log(process.env);
 		this.rowTasks = this.rowTasks.bind(this);
@@ -48,7 +50,7 @@ class Explore extends React.Component<any, States> {
 				rows[counter] = rows[counter] ? [...rows[counter]] : [];
 
 				console.log("Counter: " + counter);
-				if ((index - copy) % 4 === 0 && index !== 0) {
+				if ((index - copy) % 3 === 0 && index !== 0) {
 					counter = counter + 1;
 					rows[counter] = rows[counter] ? [...rows[counter]] : [];
 					rows[counter].push(task);
@@ -67,10 +69,17 @@ class Explore extends React.Component<any, States> {
 		const rows = this.rowTasks();
 		let first = false;
 		let cards = Object.keys(rows).map((row) => {
+			console.log("row: " + row);
+			
 			return (
 				<div className="row">
 					{rows[row].map((task, index) => {
-						index == 0 ? (first = true) : (first = false);
+						if (this.state.first) {
+							index == 0 ? (first = true) : (first = false);
+							this.setState({ first: false });
+						} else {
+							first = false;
+						}
 						return (
 							<div className="col-sm">
 								<Task
@@ -88,6 +97,7 @@ class Explore extends React.Component<any, States> {
 									date={task.date}
 									taken={false}
 									worker={false}
+									issuer={task.issuer}
 								/>
 							</div>
 						);

@@ -38,6 +38,10 @@ const taskSchema = mongoose.Schema({
 	taken: {
 		type: Boolean,
 	},
+
+	issuer:{
+		type: String,
+	}
 });
 
 module.exports = mongoose.models.Task || mongoose.model("Task", taskSchema);
