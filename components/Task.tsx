@@ -8,6 +8,15 @@ interface Props {
 	first: boolean;
 	id: string;
 	address: string;
+	size: string;
+	takenDown: boolean;
+	wallMount: string;
+	wallType: string;
+	cords: boolean;
+	externalDevices: boolean;
+	date: Date;
+	taken: boolean;
+	worker: boolean;
 }
 
 const pictures = {
@@ -58,7 +67,21 @@ const verifyWorker = async (info) => {
 	//hideTask(info);
 };
 
-const Task: React.FC<Props> = ({ title, first, id, address }: Props) => {
+const Task: React.FC<Props> = ({
+	title,
+	first,
+	id,
+	address,
+	size,
+	takenDown,
+	wallMount,
+	wallType,
+	cords,
+	externalDevices,
+	date,
+	taken,
+	worker
+}: Props) => {
 	console.log(title);
 	console.log("in task: " + address);
 
@@ -73,6 +96,14 @@ const Task: React.FC<Props> = ({ title, first, id, address }: Props) => {
 			taskID: id,
 			workerID: user.sub,
 			title: title,
+			size: size,
+			takenDown: takenDown,
+			wallMount: wallMount,
+			wallType: wallType,
+			cords: cords,
+			externalDevices: externalDevices,
+			date: date,
+			taken: false,
 		};
 	}
 
@@ -120,13 +151,11 @@ const Task: React.FC<Props> = ({ title, first, id, address }: Props) => {
 						</div>
 					</div>
 				</div>
-				{user && !loading ? (
+				{user && !loading && !worker ? (
 					<button
 						onClick={() => {
 							if (verifyWorker(info)) {
 								hideTask(info);
-							}
-							{
 							}
 						}}
 						className="btn btn-primary view-task"

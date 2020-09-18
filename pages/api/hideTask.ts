@@ -28,7 +28,15 @@ export default async (req, res) => {
 
 				const taskInfo = {
 					taskID: req.body.taskID,
-					taskType: req.body.title,
+					type: req.body.title,
+					size: req.body.size,
+					takenDown: req.body.takenDown,
+					wallMount: req.body.wallMount,
+					wallType: req.body.wallType,
+					cords: req.body.cords,
+					externalDevices: req.body.externalDevices,
+					date: req.body.date,
+					taken: req.body.taken,
 				};
 
 				Worker.updateOne(

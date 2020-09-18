@@ -6,8 +6,12 @@
 	--padding-left: 10vw;
 }
 
+.create-task-container{
+	text-align: left;
+}
+
 .register-container {
-  text-align: center;
+	text-align: center;
 }
 .btn-login-register {
 	font-family: "Roboto";

@@ -14,10 +14,10 @@ const taskSchema = mongoose.Schema({
 		type: String,
 	},
 	cords: {
-		type: String,
+		type: Boolean,
 	},
 	externalDevices: {
-		type: String,
+		type: Boolean,
 	},
 	type: {
 		type: String,

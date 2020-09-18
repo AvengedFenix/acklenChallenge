@@ -28,6 +28,7 @@ type States = {
 	uZip: Number;
 	numberTV: Number;
 	alert: Boolean;
+	success: Boolean;
 };
 
 class CreateTask extends React.Component<{ type }, States> {
@@ -54,6 +55,7 @@ class CreateTask extends React.Component<{ type }, States> {
 			uZip: 0,
 			numberTV: 0,
 			alert: false,
+			success: false,
 		};
 		console.log("constructor: " + this.state.form.date);
 
@@ -153,7 +155,7 @@ class CreateTask extends React.Component<{ type }, States> {
 			this.setState({ alert: true });
 		} else {
 			try {
-				const res = await fetch(process.env.VERCEL_URL + "/api/tasks", {
+				const res = await fetch("/api/tasks", {
 					method: "POST",
 					headers: {
 						Accept: "application/json",
@@ -161,8 +163,7 @@ class CreateTask extends React.Component<{ type }, States> {
 					},
 					body: JSON.stringify(this.state.form),
 				});
-				this.setState({ alert: false });
-				//router.push("/");
+				this.setState({ alert: false, success: true });
 			} catch (e) {
 				console.log(e);
 			}
@@ -338,8 +339,8 @@ class CreateTask extends React.Component<{ type }, States> {
 			);
 		};
 
-		const CustomDateInput = (/*{ value, onClick }*/) => {
-			return <button className="custom-date-input"></button>;
+		const CustomDateInput = ({ value }) => {
+			return <button className="custom-date-input">{value}</button>;
 		};
 
 		return (
@@ -348,6 +349,9 @@ class CreateTask extends React.Component<{ type }, States> {
 					<Alert variant="danger">
 						You need to fill all the information required
 					</Alert>
+				) : null}
+				{this.state.success ? (
+					<Alert variant="success">Task created successfully!</Alert>
 				) : null}
 				<h1 className="create-task-title">{this.props.type}</h1>
 				<form>
@@ -378,9 +382,9 @@ class CreateTask extends React.Component<{ type }, States> {
 				<DatePicker
 					id="date"
 					selected={this.state.form.date}
-					//value={this.state.form.date}
+					value={this.state.form.date}
 					onChange={this.handleDate}
-					customInput={<CustomDateInput />}
+					customInput={<CustomDateInput value={this.state.form.date} />}
 				/>
 				<br />
 				<br />

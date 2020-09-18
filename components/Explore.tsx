@@ -74,11 +74,20 @@ class Explore extends React.Component<any, States> {
 						return (
 							<div className="col-sm">
 								<Task
-									id={task._id}
 									first={first}
-									title={task.type}
 									key={index}
+									id={task._id}
+									title={task.type}
 									address={task.address}
+									size={task.size}
+									takenDown={task.takenDown}
+									wallMount={task.wallMount}
+									wallType={task.wallType}
+									cords={task.cords}
+									externalDevices={task.externalDevices}
+									date={task.date}
+									taken={false}
+									worker={false}
 								/>
 							</div>
 						);

@@ -36,11 +36,11 @@ const AppNavbar = () => {
 				</Link>
 				{user && !loading ? (
 					<>
-						{/* <li className="nav-item">
+						<li className="nav-item">
 							<Link href="/profile">
 								<a className="nav-link">Profile</a>
 							</Link>
-						</li> */}
+						</li>
 						<li className="nav-item">
 							<BecomeWorker
 								name={user.name}
