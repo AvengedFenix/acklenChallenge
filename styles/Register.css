@@ -32,6 +32,11 @@
 
 @media only screen and (max-width: 720px) {
 	.register-title {
+		padding-top:14vh;
 		font-size: 20px;
+	}
+
+	.btn-login-register {
+		width: 36vw;
 	}
 }
