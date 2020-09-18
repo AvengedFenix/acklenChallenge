@@ -129,6 +129,7 @@ class WorkerProfile extends React.Component<any, States> {
 									date={task.date}
 									taken={false}
 									worker={true}
+									issuer={task.issuer}
 								/>
 							</div>
 						);

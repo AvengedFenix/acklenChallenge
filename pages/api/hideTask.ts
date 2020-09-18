@@ -37,6 +37,7 @@ export default async (req, res) => {
 					externalDevices: req.body.externalDevices,
 					date: req.body.date,
 					taken: req.body.taken,
+					issuer: req.body.issuer
 				};
 
 				Worker.updateOne(
